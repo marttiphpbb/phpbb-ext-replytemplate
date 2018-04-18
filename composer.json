@@ -19,7 +19,7 @@
 		"phpbb/epv": "dev-master"
 	},
 	"extra": {
-		"display-name": "Posting Template",
+		"display-name": "Topic Template",
 		"soft-require": {
 			"phpbb/phpbb": ">=3.2,<3.3"
 		},
