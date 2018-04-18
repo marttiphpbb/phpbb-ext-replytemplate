@@ -2,11 +2,23 @@ services:
     marttiphpbb.topictemplate.listener:
         class: marttiphpbb\topictemplate\event\listener
         arguments:
-            - @config_text
-            - @dbal.conn
-            - @request
-            - @user
-            - %tables.config_text%
-            - %tables.forums%
+            - '@dbal.conn'
+            - '@request'
+            - '@language'
+            - '@marttiphpbb.topictemplate.service.store'
+            - '%tables.forums%'
         tags:
             - { name: event.listener }
+
+    marttiphpbb.topictemplate.posting_listener:
+        class: marttiphpbb\topictemplate\event\listener
+        arguments:
+            - '@marttiphpbb.topictemplate.service.store'
+        tags:
+            - { name: event.listener }
+
+    marttiphpbb.topictemplate.service.store:
+        class: marttiphpbb\topictemplate\service\store
+        arguments:
+            - '@config_text'
+            - '@cache.driver'

@@ -55,47 +55,61 @@ class store
 		$this->cache->put(self::CACHE_KEY, $this->settings);
 	}
 
-	public function set_all(array $settings)
+	private function set_all(array $settings)
 	{
 		$this->settings = $settings;
 		$this->write();
 	}
 
-	public function get_all():array 
+	private function get_all():array 
 	{
 		$this->load();
 		return $this->settings;
 	}
 
-	public function get(string $extension_name, string $key):array
+	public function get(int $forum_id):string
 	{
 		$this->load();
-		return $this->settings[$extension_name][$key] ?? [];
+		return $this->settings['forums'][$forum_id] ?? '';
 	}
 
-	public function set(string $extension_name, string $key, array $template_events)
+	public function set(int $forum_id, string $template)
 	{
 		$this->load();
-		$this->settings[$extension_name][$key] = $template_events;
+
+		if (strlen($template) === 0) 
+		{
+			unset($this->settings['forums'][$forum_id]);
+		}
+		else
+		{
+			$this->settings['forums'][$forum_id] = $template;			
+		}
+
 		$this->write();
 	}
 
-	public function remove_extension(string $extension_name)
+	public function is_set(int $forum_id):bool
 	{
 		$this->load();
-		unset($this->settings[$extension_name]);
+	
+		return isset($this->settings['forums'][$forum_id]);
+	}
+
+	public function delete_all_but(array $keep_forum_ids)
+	{
+		$keep_forum_ids = array_fill_keys($keep_forum_ids, true);
+
+		$this->load();
+
+		foreach ($this->settings['forums'] as $forum_id)
+		{
+			if (!isset($keep_forum_ids[$forum_id]))
+			{
+				unset($this->settings['forums'][$forum_id]);
+			}
+		}
+
 		$this->write();
-	}
-
-	public function get_extensions():array 
-	{
-		$this->load();
-		return array_keys($this->settings);
-	}
-
-	public function ext_is_present(string $extension_name)
-	{
-		$this->load();
-		return isset($this->settings[$extension_name]);
 	}
 }
