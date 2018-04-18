@@ -1,10 +1,10 @@
 {
-	"name": "marttiphpbb/postingtemplate",
+	"name": "marttiphpbb/topictemplate",
 	"type": "phpbb-extension",
-	"description": "Posting Template Extension for phpBB 3.1",
-	"homepage": "https://github.com/marttiphpbb/phpbb-ext-postingtemplate",
+	"description": "Topic Template Extension for phpBB 3.2",
+	"homepage": "https://github.com/marttiphpbb/phpbb-ext-topictemplate",
 	"version": "1.0.0",
-	"time": "2015-12-30",
+	"time": "2018-04-18",
 	"license": "GPL-2.0",
 	"authors": [{
 			"name": "martti",
@@ -26,7 +26,7 @@
 		"version-check": {
 			"host": "marttiphpbb.github.io",
 			"directory": "/version",
-			"filename": "postingtemplate.json"
+			"filename": "topictemplate.json"
 		}
 	}
 }

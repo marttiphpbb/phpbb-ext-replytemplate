@@ -1,6 +1,18 @@
-<!-- IF S_FORUM_POST -->
+{%- if S_FORUM_POST -%}
 <dl>
-	<dt><label for="forum_postingtemplate">{L_ACP_POSTINGTEMPLATE}{L_COLON}</label><br /><span>{L_ACP_POSTINGTEMPLATE_EXPLAIN}</span></dt>
-	<dd><textarea id="forum_postingtemplate" name="forum_postingtemplate" rows="5" cols="45" data-bbcode="true">{FORUM_POSTINGTEMPLATE}</textarea></dd>
+	<dt>
+		<label for="forum_marttiphpbb_topictemplate">
+			{{- lang('ACP_MARTTIPHPBB_TOPICTEMPLATE') -}}
+		</label>
+		<br>
+		<span>
+			{{- lang('ACP_MARTTIPHPBB_TOPICTEMPLATE_EXPLAIN') -}}
+		</span>
+	</dt>
+	<dd>
+		<textarea id="forum_marttiphpbb_topictemplate" name="forum_marttiphpbb_topictemplate" rows="5" cols="45" data-bbcode="true">
+			{{- FORUM_MARTTIPHPBB_TOPICTEMPLATE -}}
+		</textarea>
+	</dd>
 </dl>
-<!-- ENDIF -->
+{%- endif -%}

@@ -1,6 +1,6 @@
 services:
-    marttiphpbb.postingtemplate.listener:
-        class: marttiphpbb\postingtemplate\event\listener
+    marttiphpbb.topictemplate.listener:
+        class: marttiphpbb\topictemplate\event\listener
         arguments:
             - @config_text
             - @dbal.conn
