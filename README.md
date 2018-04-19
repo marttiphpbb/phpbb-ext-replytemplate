@@ -15,7 +15,7 @@ Whenever someone replies to a topic, the editor gets prefilled with the text tha
 
 ![ACP](/doc/acp.png)
 
-**Posting a new reply in the forum**
+**Posting a new reply in the topic**
 
 ![Posting](/doc/reply.png)
 
