@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e04f2a303d8b9019b26eb2827456ba4f",
+    "content-hash": "a18c66ac35e6a9f33a0c657e17432413",
     "packages": [],
     "packages-dev": [
         {
@@ -315,7 +315,7 @@
             ],
             "description": "Library for accessing git",
             "homepage": "http://gitonomy.com",
-            "time": "2015 - 2018-12-01T22:25:57+00:00"
+            "time": "2015-12-01T22:25:57+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -671,7 +671,7 @@
             "keywords": [
                 "phra"
             ],
-            "time": "2015 - 2018-10-13T18:44:15+00:00"
+            "time": "2015-10-13T18:44:15+00:00"
         },
         {
             "name": "sensiolabs/ansi-to-html",
