@@ -1,17 +1,17 @@
 <?php
 /**
-* phpBB Extension - marttiphpbb Topic Template
+* phpBB Extension - marttiphpbb Reply Template
 * @copyright (c) 2015 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\topictemplate\event;
+namespace marttiphpbb\replytemplate\event;
 
 use phpbb\event\data as event;
 use phpbb\db\driver\factory as db;
 use phpbb\request\request;
 use phpbb\language\language;
-use marttiphpbb\topictemplate\service\store;
+use marttiphpbb\replytemplate\service\store;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -67,7 +67,7 @@ class acp_listener implements EventSubscriberInterface
 	{
 		/** 
 			because there's no php event where a form is deleted,
-			we do here cleanup of Topic Templates of deleted forums.
+			we do here cleanup of Reply Templates of deleted forums.
 			This functions runs when adding or editing a forum in ACP.
 		*/
 
@@ -89,8 +89,8 @@ class acp_listener implements EventSubscriberInterface
 		$forum_data = $event['forum_data'];
 		$forum_id = $forum_data['forum_id'];
 
-		$topic_template = utf8_normalize_nfc($this->request->variable('forum_marttiphpbb_topictemplate', '', true));
-		$this->store->set_template($forum_id, $topic_template);
+		$reply_template = utf8_normalize_nfc($this->request->variable('forum_marttiphpbb_replytemplate', '', true));
+		$this->store->set_template($forum_id, $reply_template);
 	}
 
 	public function core_acp_manage_forums_display_form(event $event)
@@ -99,12 +99,12 @@ class acp_listener implements EventSubscriberInterface
 		$forum_id = $event['forum_id'];
 		$template_data = $event['template_data'];
 
-		$topic_template = $action === 'add' ? '' : $this->store->get_template($forum_id);
+		$reply_template = $action === 'add' ? '' : $this->store->get_template($forum_id);
 
-		$template_data['FORUM_MARTTIPHPBB_TOPICTEMPLATE'] = $topic_template;
+		$template_data['FORUM_MARTTIPHPBB_REPLYTEMPLATE'] = $reply_template;
 
 		$event['template_data'] = $template_data;
 
-		$this->language->add_lang('acp', 'marttiphpbb/topictemplate');
+		$this->language->add_lang('acp', 'marttiphpbb/replytemplate');
 	}
 }

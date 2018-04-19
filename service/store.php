@@ -1,19 +1,19 @@
 <?php
 
 /**
-* phpBB Extension - marttiphpbb Topic Template
+* phpBB Extension - marttiphpbb Reply Template
 * @copyright (c) 2015 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\topictemplate\service;
+namespace marttiphpbb\replytemplate\service;
 
 use phpbb\config\db_text as config_text;
 use phpbb\cache\driver\driver_interface as cache;
 
 class store
 {
-	const KEY = 'marttiphpbb_topictemplate';
+	const KEY = 'marttiphpbb_replytemplate';
 	const CACHE_KEY = '_' . self::KEY;
 
 	/** @var config_text */
@@ -115,6 +115,11 @@ class store
 		$keep_forum_ids = array_fill_keys($keep_forum_ids, true);
 
 		$this->load();
+
+		if (!isset($data['templates']))
+		{
+			return;
+		}
 
 		foreach ($this->data['templates'] as $forum_id => $template)
 		{

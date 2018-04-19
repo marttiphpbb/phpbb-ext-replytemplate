@@ -1,14 +1,14 @@
 <?php
 /**
-* phpBB Extension - marttiphpbb Topic Template
+* phpBB Extension - marttiphpbb Reply Template
 * @copyright (c) 2015 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\topictemplate\event;
+namespace marttiphpbb\replytemplate\event;
 
 use phpbb\event\data as event;
-use marttiphpbb\topictemplate\service\store;
+use marttiphpbb\replytemplate\service\store;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -44,9 +44,9 @@ class posting_listener implements EventSubscriberInterface
 		$refresh = $event['refresh'];
 		$forum_id = $event['forum_id'];
 
-		if ($mode == 'post'
+		if ($mode === 'reply'
 			&& !$submit && !$preview && !$load && !$save && !$refresh
-			&& empty($post_data['post_text']) && empty($post_data['post_subject'])
+			&& empty($post_data['post_text'])
 			&& $this->store->template_is_set($forum_id))
 		{
 			$page_data['MESSAGE'] = $this->store->get_template($forum_id);
