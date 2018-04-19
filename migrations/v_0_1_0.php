@@ -42,11 +42,11 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 					continue;
 				}
 
-				$data['forums'][(int) $forum_id] = $row['config_value'];
+				$data['templates'][(int) $forum_id] = $row['config_value'];
 			}
 			$this->db->sql_freeresult($result);	
 
-			if (isset($data['forums']) && count($data['forums']))
+			if (isset($data['templates']) && count($data['templates']))
 			{
 				$data['imported_data_at'] = time();	
 			}

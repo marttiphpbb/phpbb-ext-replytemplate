@@ -23,7 +23,7 @@ class store
 	private $cache;
 	
 	/** @var array */
-	private $settings = [];
+	private $data = [];
 
 	public function __construct(config_text $config_text, cache $cache)
 	{
@@ -33,65 +33,58 @@ class store
 
 	private function load()
 	{
-		if ($this->settings)
+		if ($this->data)
 		{
 			return;
 		}
 
-		$this->settings = $this->cache->get(self::CACHE_KEY);		
+		$this->data = $this->cache->get(self::CACHE_KEY);		
 		
-		if ($this->settings)
+		if ($this->data)
 		{
 			return;
 		}
 		
-		$this->settings = unserialize($this->config_text->get(self::KEY));
-		$this->cache->put(self::CACHE_KEY, $this->settings);
+		$this->data = unserialize($this->config_text->get(self::KEY));
+		$this->cache->put(self::CACHE_KEY, $this->data);
 	}
 
 	private function write()
 	{
-		$this->config_text->set(self::KEY, serialize($this->settings));
-		$this->cache->put(self::CACHE_KEY, $this->settings);
-	}
-
-	private function set_all(array $settings)
-	{
-		$this->settings = $settings;
-		$this->write();
-	}
-
-	private function get_all():array 
-	{
-		$this->load();
-		return $this->settings;
+		$this->config_text->set(self::KEY, serialize($this->data));
+		$this->cache->put(self::CACHE_KEY, $this->data);
 	}
 
 	public function get(string $key)
 	{
 		$this->load();
-		return $this->settings[$key] ?? null;
+		return $this->data[$key] ?? null;
 	}
 
 	public function set(string $key, $data)
 	{
 		$this->load();
-		$this->settings[$key] = $data;
+		$this->data[$key] = $data;
 		$this->write();
 	}
 
 	public function delete(string $key)
 	{
 		$this->load();
-		unset($this->settings[$key]);
+		unset($this->data[$key]);
 		$this->write();
 	}
 
+	public function get_template_forum_ids():array 
+	{
+		$this->load();
+		return array_keys($this->data['templates'] ?? []);
+	}
 
 	public function get_template(int $forum_id):string
 	{
 		$this->load();
-		return $this->settings['forums'][$forum_id] ?? '';
+		return $this->data['templates'][$forum_id] ?? '';
 	}
 
 	public function set_template(int $forum_id, string $template)
@@ -100,11 +93,11 @@ class store
 
 		if (strlen($template) === 0) 
 		{
-			unset($this->settings['forums'][$forum_id]);
+			unset($this->data['templates'][$forum_id]);
 		}
 		else
 		{
-			$this->settings['forums'][$forum_id] = $template;			
+			$this->data['templates'][$forum_id] = $template;			
 		}
 
 		$this->write();
@@ -114,7 +107,7 @@ class store
 	{
 		$this->load();
 	
-		return isset($this->settings['forums'][$forum_id]);
+		return isset($this->data['templates'][$forum_id]);
 	}
 
 	public function delete_all_templates_but(array $keep_forum_ids)
@@ -123,23 +116,20 @@ class store
 
 		$this->load();
 
-		foreach ($this->settings['forums'] as $forum_id)
+		foreach ($this->data['templates'] as $forum_id => $template)
 		{
 			if (!isset($keep_forum_ids[$forum_id]))
 			{
-				if (isset($this->settings['forums'][$forum_id]))
+				if (isset($this->data['deleted']))
 				{
-					if (isset($this->settings['deleted']))
-					{
-						$this->settings['deleted'][] = $forum_id;
-					}
-					else
-					{
-						$this->settings['deleted'] = [$forum_id];
-					}
-					 
+					$this->data['deleted'][] = $forum_id;
 				}
-				unset($this->settings['forums'][$forum_id]);
+				else
+				{
+					$this->data['deleted'] = [$forum_id];
+				}
+
+				unset($this->data['templates'][$forum_id]);
 			}
 		}
 

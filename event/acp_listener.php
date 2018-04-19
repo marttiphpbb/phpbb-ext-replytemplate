@@ -67,15 +67,17 @@ class acp_listener implements EventSubscriberInterface
 	{
 		/** 
 			because there's no php event where a form is deleted,
-			we do cleanup of Topic Templates of deleted forums whenever showing the form.
+			we do here cleanup of Topic Templates of deleted forums.
+			This functions runs when adding or editing a forum in ACP.
 		*/
 
 		$keep_forum_ids = [];
 	
 		$sql = 'select forum_id from ' . $this->forums_table;
 		$result = $this->db->sql_query($sql);
-		while ($keep_forum_ids[] = $this->db->sql_fetchfield('forum_id'))
+		while ($forum_id = $this->db->sql_fetchfield('forum_id'))
 		{
+			$keep_forum_ids[] = $forum_id;
 		}
 		$this->db->sql_freeresult($result);
 
