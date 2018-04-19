@@ -1,5 +1,7 @@
 # PhpBB Extension - marttiphpbb Reply Template
 
+[Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2468936)
+
 ## Requirements
 
 phpBB 3.2+ PHP 7+
