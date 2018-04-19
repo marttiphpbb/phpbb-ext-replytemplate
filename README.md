@@ -1,4 +1,37 @@
-# phpBB 3.2 PhpBB Extension - marttiphpbb Topic Template
+# PhpBB Extension - marttiphpbb Topic Template
+
+## Requirements
+
+phpBB 3.2+ PHP 7+
+
+## Features
+
+With this extension you can set a Topic Template (text) in the ACP for each forum in your board.
+Whenever someone starts a topic. The editor gets prefilled with the text that you defined.
+
+## Screeenshots
+
+**Add or Edit a forum in the ACP**
+
+![ACP](/doc/acp.png)
+
+**Posting a new topic in the forum**
+
+![Posting](/doc/posting.png)
+
+## Migrating from "Posting Template"
+
+This is an upgrade and rewrite of my ["Posting Template" extension](https://www.phpbb.com/customise/db/extension/posting_template_4/). 
+It got renamed to "Topic Template" to reflect better what it does. 
+
+This extension checks in the install process if the "Posting Template" is enabled.
+If this is the case, all data is migrated. All templates are copied to this extension. 
+
+In order to migrate the templates from "Posting Template": 
+
+* keep "Posting Template" enabled.
+* Install and enable this extension. 
+* Disable "Posting Template".
 
 ## Quick Install
 
@@ -7,7 +40,7 @@ You can install this on the latest release of phpBB 3.2 by following the steps b
 * Create `marttiphpbb/topictemplate` in the `ext` directory.
 * Download and unpack the repository into `ext/marttiphpbb/topictemplate`
 * Enable `Posting Template` in the ACP at `Customise -> Manage extensions`.
-* You can start editing the Posting Template in the Forum ACP for each Forum.
+* You can start editing the Topic Template in the Forum ACP for each Forum.
 
 ## Uninstall
 

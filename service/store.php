@@ -67,13 +67,34 @@ class store
 		return $this->settings;
 	}
 
-	public function get(int $forum_id):string
+	public function get(string $key)
+	{
+		$this->load();
+		return $this->settings[$key] ?? null;
+	}
+
+	public function set(string $key, $data)
+	{
+		$this->load();
+		$this->settings[$key] = $data;
+		$this->write();
+	}
+
+	public function delete(string $key)
+	{
+		$this->load();
+		unset($this->settings[$key]);
+		$this->write();
+	}
+
+
+	public function get_template(int $forum_id):string
 	{
 		$this->load();
 		return $this->settings['forums'][$forum_id] ?? '';
 	}
 
-	public function set(int $forum_id, string $template)
+	public function set_template(int $forum_id, string $template)
 	{
 		$this->load();
 
@@ -89,14 +110,14 @@ class store
 		$this->write();
 	}
 
-	public function is_set(int $forum_id):bool
+	public function template_is_set(int $forum_id):bool
 	{
 		$this->load();
 	
 		return isset($this->settings['forums'][$forum_id]);
 	}
 
-	public function delete_all_but(array $keep_forum_ids)
+	public function delete_all_templates_but(array $keep_forum_ids)
 	{
 		$keep_forum_ids = array_fill_keys($keep_forum_ids, true);
 
@@ -106,6 +127,18 @@ class store
 		{
 			if (!isset($keep_forum_ids[$forum_id]))
 			{
+				if (isset($this->settings['forums'][$forum_id]))
+				{
+					if (isset($this->settings['deleted']))
+					{
+						$this->settings['deleted'][] = $forum_id;
+					}
+					else
+					{
+						$this->settings['deleted'] = [$forum_id];
+					}
+					 
+				}
 				unset($this->settings['forums'][$forum_id]);
 			}
 		}

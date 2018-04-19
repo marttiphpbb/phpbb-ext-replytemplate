@@ -47,9 +47,9 @@ class posting_listener implements EventSubscriberInterface
 		if ($mode == 'post'
 			&& !$submit && !$preview && !$load && !$save && !$refresh
 			&& empty($post_data['post_text']) && empty($post_data['post_subject'])
-			&& $this->store->is_set($forum_id))
+			&& $this->store->template_is_set($forum_id))
 		{
-			$page_data['MESSAGE'] = $this->store->get($forum_id);
+			$page_data['MESSAGE'] = $this->store->get_template($forum_id);
 		}
 
 		$event['page_data'] = $page_data;

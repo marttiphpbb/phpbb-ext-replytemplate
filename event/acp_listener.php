@@ -79,7 +79,7 @@ class acp_listener implements EventSubscriberInterface
 		}
 		$this->db->sql_freeresult($result);
 
-		$this->store->delete_all_but($keep_forum_ids);
+		$this->store->delete_all_templates_but($keep_forum_ids);
 	}
 
 	public function core_acp_manage_forums_update_data_after(event $event)
@@ -88,7 +88,7 @@ class acp_listener implements EventSubscriberInterface
 		$forum_id = $forum_data['forum_id'];
 
 		$topic_template = utf8_normalize_nfc($this->request->variable('forum_marttiphpbb_topictemplate', '', true));
-		$this->store->set($forum_id, $topic_template);
+		$this->store->set_template($forum_id, $topic_template);
 	}
 
 	public function core_acp_manage_forums_display_form(event $event)
@@ -97,7 +97,7 @@ class acp_listener implements EventSubscriberInterface
 		$forum_id = $event['forum_id'];
 		$template_data = $event['template_data'];
 
-		$topic_template = $action === 'add' ? '' : $this->store->get($forum_id);
+		$topic_template = $action === 'add' ? '' : $this->store->get_template($forum_id);
 
 		$template_data['FORUM_MARTTIPHPBB_TOPICTEMPLATE'] = $topic_template;
 

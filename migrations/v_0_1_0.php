@@ -25,14 +25,14 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 			from ' . EXT_TABLE . '
 			where ext_name = \'marttiphpbb/postingtemplate\'';
 		$result = $this->db->sql_query($sql);		
-		$active = $this->db->fetchfield('ext_active');
+		$active = $this->db->sql_fetchfield('ext_active');
 		$this->db->sql_freeresult($result);
 	
 		if ($active)
 		{
 			$sql = 'select config_name, config_value
 				from ' . CONFIG_TEXT_TABLE . '
-				where config_name ' . $this->db->sql_like_expression('marttiphpbb_postingtemplate_forum[' . $this->db->get_any_char());
+				where config_name ' . $this->db->sql_like_expression('marttiphpbb_postingtemplate_forum' . $this->db->get_any_char());
 			$result = $this->db->sql_query($sql);
 			while ($row = $this->db->sql_fetchrow($result))
 			{
@@ -41,10 +41,15 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 				{
 					continue;
 				}
-				$data['imported_from_marttiphpbb_postingtemplate'] = true;
+
 				$data['forums'][(int) $forum_id] = $row['config_value'];
 			}
 			$this->db->sql_freeresult($result);	
+
+			if (isset($data['forums']) && count($data['forums']))
+			{
+				$data['imported_data_at'] = time();	
+			}
 		}
 
 		return [
