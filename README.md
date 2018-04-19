@@ -24,8 +24,8 @@ Whenever someone starts a topic. The editor gets prefilled with the text that yo
 This is an upgrade and rewrite of my ["Posting Template" extension](https://www.phpbb.com/customise/db/extension/posting_template_4/).
 It got renamed to "Topic Template" to reflect better what it does.
 
-This extension checks in the install process if the "Posting Template" is enabled.
-If this is the case, all data is migrated. All templates are copied to this extension.
+This extension checks in the install process if the "Posting Template" extension is enabled.
+If this is the case, all template data is copied to this extension.
 
 In order to migrate the templates from "Posting Template":
 
