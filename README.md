@@ -37,7 +37,7 @@ You can install this on the latest release of phpBB 3.2 by following the steps b
 
 ## Support
 
-* Report bugs and other issues to the [Issue Tracker](https://github.com/marttiphpbb/replytemplate/issues).
+* Report bugs and other issues to the [Issue Tracker](https://github.com/marttiphpbb/phpbb-ext-replytemplate/issues).
 
 
 ### License
