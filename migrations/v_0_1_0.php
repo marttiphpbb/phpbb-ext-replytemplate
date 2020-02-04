@@ -11,14 +11,14 @@ use marttiphpbb\replytemplate\service\store;
 
 class v_0_1_0 extends \phpbb\db\migration\migration
 {
-	static public function depends_on()
+	static public function depends_on():array
 	{
 		return [
 			'\phpbb\db\migration\data\v320\v320',
 		];
 	}
 
-	public function update_data()
+	public function update_data():array
 	{
 		return [
 			['config_text.add', [store::KEY, serialize([])]],

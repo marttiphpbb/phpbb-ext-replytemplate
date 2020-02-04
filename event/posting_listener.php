@@ -20,7 +20,7 @@ class posting_listener implements EventSubscriberInterface
 		$this->store = $store;
 	}
 
-	static public function getSubscribedEvents()
+	static public function getSubscribedEvents():array
 	{
 		return [
 			'core.posting_modify_template_vars'
@@ -30,7 +30,7 @@ class posting_listener implements EventSubscriberInterface
 		];
 	}
 
-	public function core_posting_modify_template_vars(event $event)
+	public function core_posting_modify_template_vars(event $event):void
 	{
 		$submit = $event['submit'];
 		$preview = $event['preview'];
@@ -91,7 +91,7 @@ class posting_listener implements EventSubscriberInterface
 		$event['page_data'] = $page_data;
 	}
 
-	public function core_viewtopic_modify_quick_reply_template_vars(event $event)
+	public function core_viewtopic_modify_quick_reply_template_vars(event $event):void
 	{
 		$topic_data = $event['topic_data'];
 		$forum_id = $topic_data['forum_id'];

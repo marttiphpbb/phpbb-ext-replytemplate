@@ -26,7 +26,7 @@ class store
 		$this->cache = $cache;
 	}
 
-	private function load()
+	private function load():void
 	{
 		if ($this->data)
 		{
@@ -44,26 +44,13 @@ class store
 		$this->cache->put(self::CACHE_KEY, $this->data);
 	}
 
-	private function write()
+	private function write():void
 	{
 		$this->config_text->set(self::KEY, serialize($this->data));
 		$this->cache->put(self::CACHE_KEY, $this->data);
 	}
 
-	public function get(string $key)
-	{
-		$this->load();
-		return $this->data[$key] ?? null;
-	}
-
-	public function set(string $key, $data)
-	{
-		$this->load();
-		$this->data[$key] = $data;
-		$this->write();
-	}
-
-	public function delete(string $key)
+	public function delete(string $key):void
 	{
 		$this->load();
 		unset($this->data[$key]);
@@ -82,7 +69,7 @@ class store
 		return $this->data['templates'][$forum_id] ?? '';
 	}
 
-	public function set_template(int $forum_id, string $template)
+	public function set_template(int $forum_id, string $template):void
 	{
 		$this->load();
 
@@ -105,7 +92,7 @@ class store
 		return isset($this->data['templates'][$forum_id]);
 	}
 
-	public function delete_all_templates_but(array $keep_forum_ids)
+	public function delete_all_templates_but(array $keep_forum_ids):void
 	{
 		$keep_forum_ids = array_fill_keys($keep_forum_ids, true);
 

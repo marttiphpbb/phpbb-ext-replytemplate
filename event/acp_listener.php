@@ -38,7 +38,7 @@ class acp_listener implements EventSubscriberInterface
 		$this->forums_table = $forums_table;
 	}
 
-	static public function getSubscribedEvents()
+	static public function getSubscribedEvents():array
 	{
 		return [
 			'core.acp_manage_forums_initialise_data'	=> 'core_acp_manage_forums_initialise_data',
@@ -47,7 +47,7 @@ class acp_listener implements EventSubscriberInterface
 		];
 	}
 
-	public function core_acp_manage_forums_initialise_data(event $event)
+	public function core_acp_manage_forums_initialise_data(event $event):void
 	{
 		/**
 			because there's no php event where a form is deleted,
@@ -68,7 +68,7 @@ class acp_listener implements EventSubscriberInterface
 		$this->store->delete_all_templates_but($keep_forum_ids);
 	}
 
-	public function core_acp_manage_forums_update_data_after(event $event)
+	public function core_acp_manage_forums_update_data_after(event $event):void
 	{
 		$forum_data = $event['forum_data'];
 		$forum_id = $forum_data['forum_id'];
@@ -77,7 +77,7 @@ class acp_listener implements EventSubscriberInterface
 		$this->store->set_template($forum_id, $reply_template);
 	}
 
-	public function core_acp_manage_forums_display_form(event $event)
+	public function core_acp_manage_forums_display_form(event $event):void
 	{
 		$action = $event['action'];
 		$forum_id = $event['forum_id'];
