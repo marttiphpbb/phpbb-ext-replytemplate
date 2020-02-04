@@ -1,0 +1,4 @@
+{%- if MARTTIPHPBB_REPLYTEMPLATE_MESSAGE is defined -%}
+    {%- INCLUDEJS '@marttiphpbb_replytemplate/js/quick_reply.js' -%}
+    <span data-message="{{- MARTTIPHPBB_REPLYTEMPLATE_MESSAGE -}}" class="hidden" id="marttiphpbb-replytemplate-message"></span>
+{%- endif -%}
