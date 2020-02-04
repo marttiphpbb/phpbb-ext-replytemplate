@@ -16,13 +16,17 @@ Whenever someone replies to a topic, the editor gets prefilled with the text tha
 
 ## Screenshots
 
-Add or Edit a forum in the ACP
+### Add or Edit a forum in the ACP
 
 ![ACP](/doc/acp.png)
 
-Posting a new reply in the topic
+### Posting a new reply in the topic
 
 ![Posting](/doc/reply.png)
+
+### Quick reply
+
+![Posting](/doc/quick_reply.png)
 
 ## Quick Install
 
