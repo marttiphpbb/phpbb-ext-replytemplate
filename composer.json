@@ -1,11 +1,11 @@
 {
 	"name": "marttiphpbb/replytemplate",
 	"type": "phpbb-extension",
-	"description": "Reply Template Extension for phpBB 3.2",
+	"description": "Reply Template Extension for phpBB 3.3",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-replytemplate",
-	"version": "0.1.1",
-	"time": "2018-05-31",
-	"license": "GPL-2.0",
+	"version": "0.2.0",
+	"time": "2020-02-04",
+	"license": "GPL-2.0-only",
 	"authors": [{
 			"name": "martti",
 			"email": "info@martti.be",
@@ -13,7 +13,7 @@
 			"role": "Developer"
 		}],
 	"require": {
-		"php": ">=7"
+		"php": ">=7.1"
 	},
 	"require-dev": {
 		"phpbb/epv": "dev-master"
@@ -21,7 +21,7 @@
 	"extra": {
 		"display-name": "Reply Template",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2,<3.3"
+			"phpbb/phpbb": ">=3.3"
 		},
 		"version-check": {
 			"host": "marttiphpbb.github.io",

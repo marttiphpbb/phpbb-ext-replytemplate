@@ -4,7 +4,10 @@
 
 ## Requirements
 
-phpBB 3.2+ PHP 7+
+* phpBB 3.3+
+* PHP 7.1+
+
+A Prosilver based template is required for quick reply templates.
 
 ## Features
 
@@ -12,18 +15,18 @@ With this extension you can set a Reply Template (text) in the ACP for each foru
 Whenever someone replies to a topic, the editor gets prefilled with the text that you defined.
 
 ## Screenshots
- 
-**Add or Edit a forum in the ACP**
+
+Add or Edit a forum in the ACP
 
 ![ACP](/doc/acp.png)
 
-**Posting a new reply in the topic**
+Posting a new reply in the topic
 
 ![Posting](/doc/reply.png)
 
 ## Quick Install
 
-You can install this on the latest release of phpBB 3.2 by following the steps below:
+You can install this on the latest release of phpBB by following the steps below:
 
 * Create `marttiphpbb/replytemplate` in the `ext` directory.
 * Download and unpack the repository into `ext/marttiphpbb/replytemplate`
@@ -38,7 +41,6 @@ You can install this on the latest release of phpBB 3.2 by following the steps b
 ## Support
 
 * Report bugs and other issues to the [Issue Tracker](https://github.com/marttiphpbb/phpbb-ext-replytemplate/issues).
-
 
 ### License
 
