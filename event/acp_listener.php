@@ -1,7 +1,7 @@
 <?php
 /**
 * phpBB Extension - marttiphpbb Reply Template
-* @copyright (c) 2015 - 2020 marttiphpbb <info@martti.be>
+* @copyright (c) 2015 - 2025 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
@@ -73,7 +73,7 @@ class acp_listener implements EventSubscriberInterface
 		$forum_data = $event['forum_data'];
 		$forum_id = $forum_data['forum_id'];
 
-		$reply_template = utf8_normalize_nfc($this->request->variable('forum_marttiphpbb_replytemplate', '', true));
+		$reply_template = utf8_encode_ucr($this->request->variable('forum_marttiphpbb_replytemplate', '', true));
 		$this->store->set_template($forum_id, $reply_template);
 	}
 
